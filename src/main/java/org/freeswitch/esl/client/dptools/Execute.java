@@ -27,7 +27,7 @@ public class Execute {
      *     http://wiki.freeswitch.org/wiki/Misc._Dialplan_Tools_Send_Display
      *     </a>
      */
-    public void sendDiplay(String message) throws ExecuteException {
+    public void sendDisplay(String message) throws ExecuteException {
         sendExeMesg("send_display", message);
     }
 
