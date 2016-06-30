@@ -124,6 +124,17 @@ public class Context implements IModEslApi {
 
 	}
 
+    public CommandResponse sendRawCommand(String command) {
+        try {
+
+            final EslMessage response = getUnchecked(handler.sendApiSingleLineCommand(channel, command));
+            return new CommandResponse(command, response);
+
+        } catch (Throwable t) {
+            throw propagate(t);
+        }
+    }
+
 	/**
 	 * Cancel any existing event subscription.
 	 *
@@ -274,4 +285,5 @@ public class Context implements IModEslApi {
           throw propagate(t);
       }
   }
+
 }
