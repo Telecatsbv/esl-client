@@ -99,6 +99,7 @@ public class Client implements IModEslApi {
 		}
 
 		log.info("Connecting to {} ...", clientAddress);
+        authenticatorResponded.set(false);
 
 		EventLoopGroup workerGroup = new NioEventLoopGroup();
 
@@ -302,7 +303,7 @@ public class Client implements IModEslApi {
 
 		try {
 			if (clientContext.isPresent()) {
-				return new CommandResponse("exit", clientContext.get().sendApiCommand("exit", null));
+                return clientContext.get().sendRawCommand("exit");
 			} else {
 				throw new IllegalStateException("not connected/authenticated");
 			}
@@ -338,5 +339,10 @@ public class Client implements IModEslApi {
 		public void disconnected() {
 			log.info("Disconnected ...");
 		}
+
+        @Override
+        public void exceptionCaught(Context context, Throwable e) {
+            log.info("Caught exception", e);
+        }
 	};
 }

@@ -77,6 +77,12 @@ class OutboundClientHandler extends AbstractEslClientHandler {
 
 	@Override
 	protected void handleDisconnectionNotice() {
+        clientHandler.handleDisconnectionNotice();
 		log.debug("Received disconnection notice");
 	}
+
+    @Override
+    protected void handleExceptionCaught(ChannelHandlerContext ctx, Throwable e) {
+        clientHandler.handleExceptionCaught(new Context(ctx.channel(), OutboundClientHandler.this), e);
+    }
 }

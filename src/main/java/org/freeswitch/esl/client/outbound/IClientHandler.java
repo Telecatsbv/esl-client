@@ -6,4 +6,8 @@ import org.freeswitch.esl.client.transport.event.EslEvent;
 
 public interface IClientHandler extends IEslEventListener {
 	void onConnect(Context ctx, EslEvent event);
+
+    void handleDisconnectionNotice();
+
+    void handleExceptionCaught(Context context, Throwable e);
 }

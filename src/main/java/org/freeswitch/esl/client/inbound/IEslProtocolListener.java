@@ -30,4 +30,7 @@ interface IEslProtocolListener {
 	void eventReceived(Context ctx, EslEvent event);
 
 	void disconnected();
+
+    void exceptionCaught(Context context, Throwable e);
+
 }

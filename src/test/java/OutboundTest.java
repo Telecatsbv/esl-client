@@ -85,6 +85,16 @@ public class OutboundTest {
                                     event.getEventName());
 
                         }
+
+                        @Override
+                        public void handleDisconnectionNotice() {
+                            logger.info("OUTBOUND handleDisconnectionNotice");
+                        }
+
+                        @Override
+                        public void handleExceptionCaught(Context context, Throwable e) {
+                            logger.info("OUTBOUND handleExceptionCaught");
+                        }
                     });
             outboundServer.startAsync();
 

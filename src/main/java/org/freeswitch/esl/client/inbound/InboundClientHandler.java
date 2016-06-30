@@ -77,4 +77,10 @@ class InboundClientHandler extends AbstractEslClientHandler {
 		listener.disconnected();
 	}
 
+    @Override
+    protected void handleExceptionCaught(ChannelHandlerContext ctx, Throwable e) {
+        log.debug("Received exceptionCaught");
+        listener.exceptionCaught(new Context(ctx.channel(), this), e);
+    }
+
 }
